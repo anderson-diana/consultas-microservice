@@ -1,32 +1,26 @@
 from datetime import datetime
 from flask import jsonify, make_response, abort
 
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017/") # Local
+db = client['consultas']
+
+def get_dict_from_mongodb():
+    itens_db = db.consultas.find()
+    CONSULTAS = {}
+    for i in itens_db:
+            i.pop('_id') # retira id: criado automaticamente 
+            item = dict(i)
+            CONSULTAS[item["idconsulta"]] = (i)
+    return CONSULTAS
+
+
 def get_timestamp():
     return datetime.now().strftime(("%Y-%m-%d %H:%M:%S"))
-
-CONSULTAS = {
-    "001": {
-        "idpaciente": "1234",
-        "idconsulta": "001",
-        "nespec": "Clinico Geral",
-        "dconsu": "03/12/2020",
-        "hconsu": "17:00",
-        "timestamp": get_timestamp(),
-        
-    },
-      "002": {
-        "idpaciente": "12",
-        "idconsulta": "002",
-        "nespec": "Clinico Geral",
-        "dconsu": "03/12/2020",
-        "hconsu": "17:00",
-        "timestamp": get_timestamp(),
-        
-    },
-
-}
-
+    
 def read_all():
+    CONSULTAS = get_dict_from_mongodb()
     dict_consultas = [CONSULTAS[key] for key in sorted(CONSULTAS.keys())]
     consultas = jsonify(dict_consultas)
     qtd = len(dict_consultas)
@@ -72,9 +66,9 @@ def create(consulta):
     horaconsu = consulta.get("hconsu")
     nespec = consulta.get("nespec")
     timestamp = get_timestamp()
-    
+    CONSULTAS = get_dict_from_mongodb()
     if(idconsulta not in CONSULTAS):
-        CONSULTAS[idconsulta] = {
+        item = {
             "idpaciente": idpaciente,
             "idconsulta": idconsulta,
             "nespec": nespec,
@@ -82,6 +76,7 @@ def create(consulta):
             "hconsu": horaconsu,
             "timestamp": get_timestamp()
         }
+        db.consultas.insert_one(consu)
         return make_response(
             "{idconsulta} criado com sucesso".format(idconsulta=idconsulta), 201
         )
