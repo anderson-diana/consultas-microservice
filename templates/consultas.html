@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias: https://getbootstrap.com.br/docs/3.3/css/#tables -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>SmartLine - Consultas </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
+  </head>
+  <body>
+<body data-new-gr-c-s-check-loaded="14.984.0" data-gr-ext-installed="" class="vsc-initialized">
+    
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">SmartLine - fila inteligente</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarsExample03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pacientes</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link" href="#">Consultas</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+      <h1> Cadastro do paciente </h1>
+      <div class="section editor">
+          <label for="idpaciente">Identificacao do paciente: <input id="idpaciente" class="form-control" type="text"> </label> <br>
+          <label for="idconsu">Identificacao da consulta: <input id="fname" class="form-control" type="text"> </label> <br>
+          <label for="nespec">Nome especialista: <input id="lname" type="text" class="form-control"> </label> <br>
+          <label for="dconsu">Data: <input id="dnasc" type="text" class="form-control"> </label> <br>
+          <label for="hconsu">Hora: <input id="conveio" type="text" class="form-control"> </label> <br>
+              <br>
+        <button id="create" class="btn btn-primary">Adicionar Consulta</button> <button id="update" class="btn btn-warning">Atualizar</button>
+        <button id="delete" class="btn btn-danger">Deletar</button> </div>
+      <br>
+      
+      </div>
+     
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-5">Todas as consultas agendadas</h1>
+</div>
+ <div class="container">
+
+  <div class="conteudo">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Data da consulta</th>
+              <th>Horário</th>
+              <th>Especialista</th> 
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <div class="error"> </div>
+    </div>
+  
+  </div>
+  
+  <script src="static/js/consult.js"></script>
+
+    <!-- Dependencias Bootstrap: jQuery.js, Popper.js, Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>
+
+
+

@@ -1,0 +1,164 @@
+swagger: "2.0"
+info:
+  description: Swagger file
+  version: "1.0.0"
+  title: Swagge REST Consultas
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+paths:
+  /consultas:
+    get:
+      operationId: consultas.read_all
+      tags:
+        - Consultas
+      summary: Lista todas as consultas do sistema
+      description: Lista todos os Pacientes
+      responses:
+        200:
+          description: Sucesso na leitura das consultas
+          schema:
+            type: array
+            items:
+              properties:
+                idpaciente:
+                  type: string
+                idconsulta:
+                  type: string
+                nespec:
+                  type: string
+                dconsu:
+                  type: string
+                hconsu:
+                  type: string
+                timestamp:
+                  type: string
+    post:
+      operationId: consultas.create
+      tags:
+        - Consultas
+      summary: Cria uma nova consulta 
+      description: Rota responsável por criar uma consulta
+      parameters:
+        - name: consulta
+          in: body
+          description: Consulta a ser agendada
+          required: True
+          schema:
+            type: object
+            properties:
+              idpaciente:
+                type: string
+                description: Numero de identificacao do paciente
+              idconsulta:
+                type: string
+                description: Numero da consulta
+              nespec:
+                type: string
+                description: Nome do especilista
+              dconsu:
+                type: string
+                description: Data da consulta
+              hconsu:
+                type: string
+                description: Hora da consulta
+      responses:
+        201:
+          description: Sucesso ao criar um paciente          
+                
+                  
+  /consulta/{idconsulta}:
+    get:
+      operationId: consultas.read_one
+      tags:
+        - Consultas
+      summary: Leitura de uma consulta de acordo com seu identificador
+      description: Leitura de uma consulta de acordo com seu identificador
+      parameters:
+        - name: idconsulta
+          in: path
+          description: identificador da consulta
+          type: string
+          required: True
+      responses:
+        200:
+          description: Sucesso na leitura de uma cliente
+          schema:
+            properties:
+              idpaciente:
+                  type: string
+                  description: Matricula do paciente
+              idconsulta:
+                  type: string
+                  description: Identificacao da consulta
+              nespec:
+                  type: string
+                  description: Nome do especilista
+              dconsu:
+                  type: string
+                  description: Data da consulta
+              hconsu:
+                  type: string
+                  description: Hora da consulta
+              timestamp:
+                  type: string
+                  description: Data e hora
+                  
+    put:
+      operationId: consultas.update
+      tags:
+        - Consultas
+      summary: Leitura de uma consulta de acordo com seu identificador
+      description: Leitura de uma consulta de acordo com seu identificador
+      parameters:
+        - name: idconsulta
+          in: path
+          description: identificador da consulta
+          type: string
+          required: True
+        - name: consulta
+          in: body
+          schema:
+            type: object
+            properties:
+              idpaciente:
+                  type: string
+                  description: Matricula do paciente
+              idconsulta:
+                  type: string
+                  description: Identificacao da consulta
+              nespec:
+                  type: string
+                  description: Nome do especilista
+              dconsu:
+                  type: string
+                  description: Data da consulta
+              hconsu:
+                  type: string
+                  description: Hora da consulta
+              timestamp:
+                  type: string
+                  description: Data e hora
+      responses:
+        201:
+          description: Sucesso na leitura de uma cliente
+    
+    delete:
+      operationId: consultas.delete
+      tags:
+        - Consultas
+      summary: Deletar uma consulta de acordo com seu identificador
+      description: Deletar uma consulta de acordo com seu identificador
+      parameters:
+        - name: idconsulta
+          in: path
+          description: identificador da consulta
+          type: string
+          required: True
+      responses:
+        200:
+          description: Sucesso na delecao de um agendamento              
