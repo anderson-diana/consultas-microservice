@@ -69,7 +69,7 @@ def create(consulta):
     idpaciente = consulta.get("idpaciente")
     idconsulta = consulta.get("idconsulta")
     dconsu = consulta.get("dconsu")
-    horaconsu = consulta.get("hconsu")
+    hconsu = consulta.get("hconsu")
     nespec = consulta.get("nespec")
     timestamp = get_timestamp()
     
@@ -79,7 +79,7 @@ def create(consulta):
             "idconsulta": idconsulta,
             "nespec": nespec,
             "dconsu": dconsu,
-            "hconsu": horaconsu,
+            "hconsu": hconsu,
             "timestamp": get_timestamp()
         }
         return make_response(

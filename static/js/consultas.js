@@ -47,10 +47,10 @@ ns.model = (function() {
                 $event_pump.trigger('model_error', [xhr, textStatus, errorThrown]);
             })
         },
-        update: function(fname, lname) {
+        update: function(dconsu, hconsu) {
             let ajax_options = {
                 type: 'PUT',
-                url: 'api/clientes/' + lname,
+                url: 'api/consulta/' + lname,
                 accepts: 'application/json',
                 contentType: 'application/json',
                 dataType: 'json',
@@ -67,10 +67,10 @@ ns.model = (function() {
                 $event_pump.trigger('model_error', [xhr, textStatus, errorThrown]);
             })
         },
-        'delete': function(idconsu) {
+        'delete': function(idconsulta) {
             let ajax_options = {
                 type: 'DELETE',
-                url: 'api/consultas/' + idconsu,
+                url: 'api/consulta/' + idconsulta,
                 accepts: 'application/json',
                 contentType: 'plain/text'
             };
@@ -118,7 +118,7 @@ ns.view = (function() {
             // did we get a people array?
             if (consultas) {
                 for (let i=0, l=consultas.length; i < l; i++) {
-                    rows += `<tr><td class="idpaciente">${consultas[i].idpaciente}</td><td class="idconsulta">${consultas[i].idconsulta}</td><td class="dataconsulta">${consultas[i].dconsu}</td><td class="horaconsulta">${consultas[i].hconsu}</td><td class="nespecialista">${consultas[i].nespec}</td><td class="acoes"><button id="delete" class="btn btn-danger">Deletar</button></td></tr>`;
+                    rows += `<tr><td class="idpaciente">${consultas[i].idpaciente}</td><td class="idconsulta">${consultas[i].idconsulta}</td><td class="dataconsulta">${consultas[i].dconsu}</td><td class="horaconsulta">${consultas[i].hconsu}</td><td class="nespecialista">${consultas[i].nespec}</td></tr>`;
                 }
                 $('table > tbody').append(rows);
             }
@@ -176,13 +176,13 @@ ns.controller = (function(m, v) {
     });
 
     $('#update').click(function(e) {
-        let fname = $fname.val(),
-            lname = $lname.val();
+        let   dconsu = $dconsulta.val(),
+            hconsu = $hconsulta.val(),
 
         e.preventDefault();
 
-        if (validate(fname, lname)) {
-            model.update(fname, lname)
+        if (validate(placeholder, dconsu)) {
+            model.update(dconsu, hconsu)
         } else {
             alert('Problema com os parâmetros: primeiro ou último nome');
         }
@@ -191,19 +191,14 @@ ns.controller = (function(m, v) {
 
     $('#delete').click(function(e) {
        
-       let $target = $(e.target),
-         idconsu ;
+         let idconsulta = $idconsulta.val();
 
-      idconsu = $target
-            .parent()
-            .find('td.idconsulta')
-            .text();
         e.preventDefault();
 
-        if (validate('placeholder', idconsu)) {
-            model.delete(idconsu)
+        if (validate('placeholder', idconsulta)) {
+            model.delete(idconsulta)
         } else {
-            alert('Problema com os parâmetros: primeiro ou último nome');
+            alert('Nao consegiu validar os dados!');
         }
         e.preventDefault();
     });
