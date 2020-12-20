@@ -55,7 +55,7 @@ ns.model = (function() {
                 contentType: 'application/json',
                 dataType: 'json',
                 data: JSON.stringify({
-                    'fname': fname,
+                    'fname': dconsu,
                     'lname': lname
                 })
             };
@@ -99,8 +99,8 @@ ns.view = (function() {
     // return the API
     return {
         reset: function() {
-            $lname.val('');
-            $fname.val('').focus();
+            $idpaciente.val('');
+            $idconsulta.val('').focus();
         },
         update_editor: function(idconsulta, idpaciente, dataconsulta, horaconsulta, nespec) {
             $idpaciente.val(idpaciente);
@@ -177,24 +177,22 @@ ns.controller = (function(m, v) {
 
     $('#update').click(function(e) {
         let   dconsu = $dconsulta.val(),
-            hconsu = $hconsulta.val(),
-
-        e.preventDefault();
-
+            hconsu = $hconsulta.val();
+            
         if (validate(placeholder, dconsu)) {
             model.update(dconsu, hconsu)
         } else {
             alert('Problema com os parâmetros: primeiro ou último nome');
         }
+       
         e.preventDefault();
+        
     });
 
     $('#delete').click(function(e) {
        
          let idconsulta = $idconsulta.val();
-
-        e.preventDefault();
-
+         
         if (validate('placeholder', idconsulta)) {
             model.delete(idconsulta)
         } else {
